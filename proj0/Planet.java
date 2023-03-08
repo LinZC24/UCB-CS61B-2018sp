@@ -50,8 +50,30 @@ public class Planet {
         return force >= 0 ? force : force * (-1);
     }
 
-    public double calcNetForceExertedByX(String[] planets) {
-        int i = 0;
+    public double calcNetForceExertedByX(Planet[] planets) {
+        double force = 0;
+        for(int i = 0; i < planets.length; i += 1) {
+            if(!this.equals(planets[i])) {
+                force += calcForceExertedByX(planets[i]);
+            }
+        }
+        return  force;
+    }
+    public double calcNetForceExertedByY(Planet[] planets) {
+        double force = 0;
+        for(int i = 0; i < planets.length; i += 1) {
+            if(!this.equals(planets[i])) {
+                force += calcForceExertedByY(planets[i]);
+            }
+        }
+        return  force;
+    }
 
+    public void update(double dt, double fX, double fY) {
+        double aX = fX / this.mass, aY = fY / this.mass;
+        xxVel += aX * dt;
+        yyVel += aY * dt;
+        xxPos += xxVel * dt;
+        yyPos += yyVel * dt;
     }
 }
