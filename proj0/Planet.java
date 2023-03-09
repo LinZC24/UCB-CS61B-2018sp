@@ -40,14 +40,14 @@ public class Planet {
 
     public double calcForceExertedByX(Planet p) {
         double force;
-        force = calcForceExertedBy(p) * ((this.xxPos - p.xxPos) / calcDistance(p));
-        return force >= 0 ? force : force * (-1);
+        force = calcForceExertedBy(p) * ((p.xxPos - this.xxPos) / calcDistance(p));
+        return force;
     }
 
     public double calcForceExertedByY(Planet p) {
         double force;
-        force = calcForceExertedBy(p) * ((this.yyPos - p.yyPos) / calcDistance(p));
-        return force >= 0 ? force : force * (-1);
+        force = calcForceExertedBy(p) * ((p.yyPos - this.yyPos) / calcDistance(p));
+        return force;
     }
 
     public double calcNetForceExertedByX(Planet[] planets) {
@@ -57,7 +57,7 @@ public class Planet {
                 force += calcForceExertedByX(planets[i]);
             }
         }
-        return  force;
+        return force;
     }
     public double calcNetForceExertedByY(Planet[] planets) {
         double force = 0;
@@ -66,7 +66,7 @@ public class Planet {
                 force += calcForceExertedByY(planets[i]);
             }
         }
-        return  force;
+        return force;
     }
 
     public void update(double dt, double fX, double fY) {
